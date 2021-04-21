@@ -17,23 +17,23 @@ class MainActivity : AppCompatActivity() {
 
     fun turnOnSettingsMenu (view: View) {
         val intent = Intent(this, SettingsActivity::class.java)
-        startActivityForResult(intent, 0)
+        startActivity(intent)
 
     }
 
     fun turnOnTutorial (view: View) {
         val intent = Intent(this, TutorialActivity::class.java)
-        startActivityForResult(intent, 0)
+        startActivity(intent)
 
     }
     fun turnOnLevelChoose (view: View) {
         val intent = Intent(this, LevelChooseActivity::class.java)
-        startActivityForResult(intent, 0)
+        startActivity(intent)
 
     }
     fun turnOnQuickGame (view: View) {
         val intent = Intent(this, GameActivity::class.java)
-        startActivityForResult(intent, 0)
+        startActivity(intent)
 
     }
 }
