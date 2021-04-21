@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="chipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/medievalsharp</item>
+        <item name="android:textStyle">italic|bold</item>
+
+    </style>
+
+</resources>

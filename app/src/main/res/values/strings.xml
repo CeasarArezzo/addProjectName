@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">addProjectName</string>
+    <string name="wppt_style">WPPT Style</string>
+    <string name="music_off">Music Off</string>
+    <string name="hard_mode">Hard Mode</string>
+    <string name="dalton_mode">Dalton Mode</string>
 </resources>
