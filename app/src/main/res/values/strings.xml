@@ -4,4 +4,9 @@
     <string name="music_off">Music Off</string>
     <string name="hard_mode">Hard Mode</string>
     <string name="dalton_mode">Dalton Mode</string>
+    <string name="quick_game_text">Quick Game</string>
+    <string name="choose_level_text">Choose Level</string>
+    <string name="tutorial_text">Tutorial</string>
+    <string name="game_name_text">Fantasy Crush</string>
+    <string name="imageMenuDescription">buttonBackground</string>
 </resources>
