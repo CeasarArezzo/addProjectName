@@ -4,27 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/gameLayout"
     tools:context=".GameActivity"
-    android:background="@drawable/background"
     >
+    
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gameBoard"
+        android:orientation="horizontal">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="137dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="114dp"
-        android:layout_marginBottom="389dp"
-        android:fontFamily="@font/medievalsharp"
-        android:text="Game"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+    </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

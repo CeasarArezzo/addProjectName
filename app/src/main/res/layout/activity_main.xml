@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/menu_background">
 
     <ImageButton
         android:id="@+id/settingsButton"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/gear_option" />
+        app:srcCompat="@drawable/menu_gear_option" />
 
     <ImageButton
         android:id="@+id/chooseLevelButton"
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quickGameButton"
-        app:srcCompat="@drawable/button_menu" />
+        app:srcCompat="@drawable/menu_button_background" />
 
     <ImageButton
         android:id="@+id/quickGameButton"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameNameText"
         app:layout_constraintVertical_bias="0.22000003"
-        app:srcCompat="@drawable/button_menu" />
+        app:srcCompat="@drawable/menu_button_background" />
 
     <ImageButton
         android:id="@+id/tutorialButton"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quickGameButton"
         app:layout_constraintVertical_bias="0.45999998"
-        app:srcCompat="@drawable/button_menu" />
+        app:srcCompat="@drawable/menu_button_background" />
 
     <TextView
         android:id="@+id/quickGameText"
