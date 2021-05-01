@@ -41,7 +41,6 @@ class GameActivity : AppCompatActivity() {
         {
             for (j in 1..noOfBlocks)
             {
-//                Log.i("am2021", "$i $j")
                 val imageView = ImageView(this)
                 imageView.id = i*100+j
                 imageView.layoutParams = ViewGroup.LayoutParams(widthOfBlock, widthOfBlock)
