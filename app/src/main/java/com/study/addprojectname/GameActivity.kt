@@ -51,6 +51,7 @@ class GameActivity : AppCompatActivity() {
                 gridLayout.addView(imageView)
             }
         }
+        //TODO: pozbyc sie gotowych polaczen
     }
 
     private fun getArrayOfGems(): IntArray {

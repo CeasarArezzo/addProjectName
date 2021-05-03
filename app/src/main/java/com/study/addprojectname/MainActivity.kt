@@ -6,6 +6,14 @@ import android.os.Bundle
 import android.view.View
 
 class MainActivity : AppCompatActivity() {
+
+    //todo list: remove when finished
+    //TODO: zapisywanie wynikow przez baze firebase, leaderboard
+    //TODO: recyclerview z wyborem poziomow
+    //TODO: animacje, do zrobienia przy uzyciu biblioteki
+    //https://github.com/daimajia/AndroidViewAnimations
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
