@@ -1,19 +1,21 @@
 package com.study.addprojectname
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.study.addprojectname.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGameBinding
-    val gems : IntArray = getArrayOfGems()
-    val noOfBlocks = 8
-    var widthOfBlock = 2
-    var widthOfScreen = 0
-    var heightOfScreen = 0
+    private val gems : IntArray = getArrayOfGems()
+    private val noOfBlocks = 8
+    private var widthOfBlock = 2
+    private var widthOfScreen = 0
+    private var heightOfScreen = 0
+    var gemViewsList = arrayListOf<ImageView>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,28 @@ class GameActivity : AppCompatActivity() {
         heightOfScreen = windowManager.currentWindowMetrics.bounds.height()
         widthOfBlock = widthOfScreen / noOfBlocks
         createBoard()
+
+        for (view : ImageView in gemViewsList)
+        {
+            view.setOnTouchListener(object : OnSwipeListener(applicationContext) {
+                override fun onSwipeLeft() {
+                    Log.i("am2021", "left swipe")
+                    super.onSwipeLeft()
+                }
+                override fun onSwipeRight() {
+                    Log.i("am2021", "right swipe")
+                    super.onSwipeRight()
+                }
+                override fun onSwipeUp() {
+                    Log.i("am2021", "up swipe")
+                    super.onSwipeUp()
+                }
+                override fun onSwipeDown() {
+                    Log.i("am2021", "down swipe")
+                    super.onSwipeDown()
+                }
+            })
+        }
     }
 
     private fun createBoard() {
@@ -48,6 +72,7 @@ class GameActivity : AppCompatActivity() {
                 imageView.maxWidth = widthOfBlock
                 val randomCandy = gems.random()
                 imageView.setImageResource(randomCandy)
+                gemViewsList.add(imageView)
                 gridLayout.addView(imageView)
             }
         }
