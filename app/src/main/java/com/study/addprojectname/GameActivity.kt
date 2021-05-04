@@ -16,14 +16,16 @@ class GameActivity : AppCompatActivity() {
     private var widthOfScreen = 0
     private var heightOfScreen = 0
     var gemViewsList = arrayListOf<ImageView>()
+    var gemSelected = -1
+    var gemToSwitch = -1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityGameBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        val viewToBind = binding.root
+        setContentView(viewToBind)
 
 //        val displayMetrics = DisplayMetrics()
         widthOfScreen = windowManager.currentWindowMetrics.bounds.width()
@@ -31,27 +33,42 @@ class GameActivity : AppCompatActivity() {
         widthOfBlock = widthOfScreen / noOfBlocks
         createBoard()
 
-        for (view : ImageView in gemViewsList)
+        for (imageView : ImageView in gemViewsList)
         {
-            view.setOnTouchListener(object : OnSwipeListener(applicationContext) {
+            imageView.setOnTouchListener(object : OnSwipeListener(applicationContext) {
                 override fun onSwipeLeft() {
-                    Log.i("am2021", "left swipe")
                     super.onSwipeLeft()
+                    Log.i("am2021", "left swipe")
+                    gemSelected = imageView.id
+                    gemToSwitch = gemSelected - 1
+                    swapGems(gemSelected, gemToSwitch)
                 }
                 override fun onSwipeRight() {
-                    Log.i("am2021", "right swipe")
                     super.onSwipeRight()
+                    gemSelected = imageView.id
+                    gemToSwitch = gemSelected + 1
+                    Log.i("am2021", "right swipe")
                 }
                 override fun onSwipeUp() {
-                    Log.i("am2021", "up swipe")
                     super.onSwipeUp()
+                    Log.i("am2021", "up swipe")
                 }
-                override fun onSwipeDown() {
+                override fun onSwipeDown() {                    super.onSwipeDown()
+
                     Log.i("am2021", "down swipe")
-                    super.onSwipeDown()
                 }
             })
         }
+    }
+
+    private fun swapGems(gemSelected : Int, gemToSwitch: Int)
+    {
+        var background1 = gemViewsList[gemSelected].tag as Int
+        var background2 = gemViewsList[gemToSwitch].tag as Int
+        gemViewsList[gemSelected].setImageResource(background2)
+        gemViewsList[gemToSwitch].setImageResource(background1)
+        gemViewsList[gemSelected].tag = background2
+        gemViewsList[gemToSwitch].tag = background1
     }
 
     private fun createBoard() {
@@ -61,20 +78,18 @@ class GameActivity : AppCompatActivity() {
         gridLayout.layoutParams.width = widthOfScreen
         gridLayout.layoutParams.height = widthOfScreen
 
-        for (i in 1..noOfBlocks)
+        for (i in 1..noOfBlocks*noOfBlocks)
         {
-            for (j in 1..noOfBlocks)
-            {
-                val imageView = ImageView(this)
-                imageView.id = i*100+j
-                imageView.layoutParams = ViewGroup.LayoutParams(widthOfBlock, widthOfBlock)
-                imageView.maxHeight = widthOfBlock
-                imageView.maxWidth = widthOfBlock
-                val randomCandy = gems.random()
-                imageView.setImageResource(randomCandy)
-                gemViewsList.add(imageView)
-                gridLayout.addView(imageView)
-            }
+            val imageView = ImageView(this)
+            imageView.id = i-1
+            imageView.layoutParams = ViewGroup.LayoutParams(widthOfBlock, widthOfBlock)
+            imageView.maxHeight = widthOfBlock
+            imageView.maxWidth = widthOfBlock
+            val randomCandy = gems.random()
+            imageView.setImageResource(randomCandy)
+            imageView.tag = randomCandy
+            gemViewsList.add(imageView)
+            gridLayout.addView(imageView)
         }
         //TODO: pozbyc sie gotowych polaczen
     }
