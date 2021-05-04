@@ -35,6 +35,7 @@ class GameActivity : AppCompatActivity() {
 
         for (imageView : ImageView in gemViewsList)
         {
+            //TODO: dodac obrone by mozna bylo tylko w jednym rzedzie/kolumnie zamieniac, i by sie nie dalo wyjsc poza tablice
             imageView.setOnTouchListener(object : OnSwipeListener(applicationContext) {
                 override fun onSwipeLeft() {
                     super.onSwipeLeft()
@@ -47,15 +48,19 @@ class GameActivity : AppCompatActivity() {
                     super.onSwipeRight()
                     gemSelected = imageView.id
                     gemToSwitch = gemSelected + 1
-                    Log.i("am2021", "right swipe")
+                    swapGems(gemSelected, gemToSwitch)
                 }
                 override fun onSwipeUp() {
                     super.onSwipeUp()
-                    Log.i("am2021", "up swipe")
+                    gemSelected = imageView.id
+                    gemToSwitch = gemSelected - noOfBlocks
+                    swapGems(gemSelected, gemToSwitch)
                 }
-                override fun onSwipeDown() {                    super.onSwipeDown()
-
-                    Log.i("am2021", "down swipe")
+                override fun onSwipeDown() {
+                    super.onSwipeDown()
+                    gemSelected = imageView.id
+                    gemToSwitch = gemSelected + noOfBlocks
+                    swapGems(gemSelected, gemToSwitch)
                 }
             })
         }
