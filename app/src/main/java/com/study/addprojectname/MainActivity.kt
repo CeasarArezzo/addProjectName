@@ -12,8 +12,7 @@ class MainActivity : AppCompatActivity() {
     //TODO: recyclerview z wyborem poziomow
     //TODO: animacje, do zrobienia przy uzyciu biblioteki
     //https://github.com/daimajia/AndroidViewAnimations
-    //TODO: poprawić obrazki gemow, dodać im przezroczyste tlo?
-    //TODO: fix overdraws
+    //TODO: poprawić obrazki, dodać im przezroczyste tlo?
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

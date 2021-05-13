@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.study.addprojectname.databinding.ActivityGameBinding
 
@@ -14,7 +15,7 @@ class GameActivity : AppCompatActivity() {
     private var widthOfBlock = 2
     private var widthOfScreen = 0
     private var heightOfScreen = 0
-    private var gemViewsList = arrayListOf<ImageView>()
+    var gemViewsList = arrayListOf<ImageView>()
     var gemSelected = -1
     var gemToSwitch = -1
 
@@ -67,8 +68,8 @@ class GameActivity : AppCompatActivity() {
 
     private fun swapGems(gemSelected : Int, gemToSwitch: Int)
     {
-        val background1 = gemViewsList[gemSelected].tag as Int
-        val background2 = gemViewsList[gemToSwitch].tag as Int
+        var background1 = gemViewsList[gemSelected].tag as Int
+        var background2 = gemViewsList[gemToSwitch].tag as Int
         gemViewsList[gemSelected].setImageResource(background2)
         gemViewsList[gemToSwitch].setImageResource(background1)
         gemViewsList[gemSelected].tag = background2

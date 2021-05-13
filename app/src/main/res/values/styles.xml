@@ -7,8 +7,5 @@
         <item name="android:textStyle">italic|bold</item>
 
     </style>
-    <style name="customBackground" parent="Theme.AppCompat.Light">
-        <item name="android:windowBackground">@drawable/menu_background</item>
-    </style>
 
 </resources>

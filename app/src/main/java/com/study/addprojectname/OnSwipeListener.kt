@@ -7,7 +7,7 @@ import android.view.View
 import kotlin.math.abs
 
 open class OnSwipeListener(context: Context) : View.OnTouchListener{
-    private var gestureDetector : GestureDetector
+    var gestureDetector : GestureDetector
     companion object{
         const val SWIPE_THRESHOLD = 100
         const val SWIPE_VELOCITY_THRESHOLD = 100
@@ -30,11 +30,11 @@ open class OnSwipeListener(context: Context) : View.OnTouchListener{
         }
 
         override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-            val result : Boolean
+            var result : Boolean
             if (e1 != null && e2 != null)
             {
-                val yDiff : Float = e2.y - e1.y
-                val xDiff : Float = e2.x - e1.x
+                var yDiff : Float = e2.y - e1.y
+                var xDiff : Float = e2.x - e1.x
                 if (abs(xDiff) > abs(yDiff))
                 {
                     //left or right
