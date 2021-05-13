@@ -16,7 +16,8 @@ class GameActivity : AppCompatActivity() {
     private var heightOfScreen = 0
     private var gemViewsList = arrayListOf<ImageView>()
     var gemSelected = -1
-    var gemToSwitch = -1
+    var gemToSwitch : Int? = -1
+    var nonGem : Int = R.drawable.ic_launcher_background
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,45 +35,208 @@ class GameActivity : AppCompatActivity() {
 
         for (imageView : ImageView in gemViewsList)
         {
-            //TODO: dodac obrone by mozna bylo tylko w jednym rzedzie/kolumnie zamieniac, i by sie nie dalo wyjsc poza tablice
             imageView.setOnTouchListener(object : OnSwipeListener(applicationContext) {
                 override fun onSwipeLeft() {
                     super.onSwipeLeft()
-                    Log.i("am2021", "left swipe")
                     gemSelected = imageView.id
-                    gemToSwitch = gemSelected - 1
-                    swapGems(gemSelected, gemToSwitch)
+                    gemToSwitch = leftNeighbour(gemSelected)
+                    Log.i("am2021", "left swipe")
+                    gemToSwitch?.let {
+                        swapGems(gemSelected, it) }
                 }
                 override fun onSwipeRight() {
                     super.onSwipeRight()
                     gemSelected = imageView.id
-                    gemToSwitch = gemSelected + 1
-                    swapGems(gemSelected, gemToSwitch)
+                    Log.i("am2021", "right swipe")
+                    gemToSwitch = rightNeighbour(gemSelected)
+                    gemToSwitch?.let { swapGems(gemSelected, it) }
                 }
                 override fun onSwipeUp() {
                     super.onSwipeUp()
                     gemSelected = imageView.id
-                    gemToSwitch = gemSelected - noOfBlocks
-                    swapGems(gemSelected, gemToSwitch)
+                    Log.i("am2021", "top swipe")
+                    gemToSwitch = topNeighbour(gemSelected)
+                    gemToSwitch?.let { swapGems(gemSelected, it) }
                 }
                 override fun onSwipeDown() {
                     super.onSwipeDown()
                     gemSelected = imageView.id
-                    gemToSwitch = gemSelected + noOfBlocks
-                    swapGems(gemSelected, gemToSwitch)
+                    Log.i("am2021", "down swipe")
+                    gemToSwitch = lowerNeighbour(gemSelected)
+                    gemToSwitch?.let { swapGems(gemSelected, it) }
                 }
             })
         }
     }
 
-    private fun swapGems(gemSelected : Int, gemToSwitch: Int)
+    private fun resolveGemEffect(current: Int)
     {
-        var background1 = gemViewsList[gemSelected].tag as Int
-        var background2 = gemViewsList[gemToSwitch].tag as Int
+        //TODO: Fix when its called, sometimes is called too few times
+        Log.i("am2021", "resolving effect: $current")
+    }
+
+    private fun lowerNeighbour(gemSelected: Int): Int?
+    {
+        return if (gemSelected + noOfBlocks < noOfBlocks * noOfBlocks)
+        {
+            gemSelected + noOfBlocks
+        }
+        else
+        {
+            null
+        }
+    }
+
+    private fun topNeighbour(gemSelected: Int): Int?
+    {
+        return if (gemSelected - noOfBlocks >= 0)
+        {
+            gemSelected - noOfBlocks
+        }
+        else
+        {
+            null
+        }
+    }
+
+    private fun leftNeighbour(gemSelected: Int): Int?
+    {
+        return if ((gemSelected - 1) / noOfBlocks == gemSelected / noOfBlocks && gemSelected != 0) {
+            gemSelected - 1
+        } else {
+            null
+        }
+    }
+
+    private fun rightNeighbour(gemSelected: Int): Int?
+    {
+        return if ((gemSelected + 1) / noOfBlocks == gemSelected / noOfBlocks ) {
+            gemSelected + 1
+        } else {
+            null
+        }
+    }
+
+    private fun checkForGroups(gameOn: Boolean)
+    {
+        for (i in 0 until noOfBlocks*noOfBlocks)
+        {
+            checkRow(i, gameOn)
+            checkCol(i, gameOn)
+        }
+    }
+
+    private fun checkCol(gemId: Int, gameOn: Boolean)
+    {
+        val next1 = lowerNeighbour(gemId)
+        if (next1 != null)
+        {
+            val next2 = lowerNeighbour(next1)
+            if (next2 != null)
+            {
+                if (gemViewsList[gemId].tag == gemViewsList[next1].tag && gemViewsList[next1].tag == gemViewsList[next2].tag)
+                {
+                    popColumn(gemId, gameOn)
+                }
+            }
+        }
+    }
+
+    private fun checkRow(gemId: Int, gameOn: Boolean)
+    {
+        val next1 = rightNeighbour(gemId)
+        if (next1 != null)
+        {
+            val next2 = rightNeighbour(next1)
+            if (next2 != null)
+            {
+                if (gemViewsList[gemId].tag == gemViewsList[next1].tag && gemViewsList[next1].tag == gemViewsList[next2].tag)
+                {
+                    popRow(gemId, gameOn)
+                }
+            }
+        }
+    }
+
+    private fun popColumn(gemId: Int, gameOn: Boolean)
+    {
+        var current : Int? = gemId
+        val initTag = gemViewsList[current!!].tag
+        while (current != null && gemViewsList[current].tag == initTag)
+        {
+            popSingle(current, gameOn)
+//            gemViewsList[current].setImageResource( nonGem )
+            current = lowerNeighbour(current)
+        }
+    }
+
+    private fun popRow(gemId: Int, gameOn: Boolean)
+    {
+        var current : Int? = gemId
+        val initTag = gemViewsList[current!!].tag
+        while (current != null && gemViewsList[current].tag == initTag)
+        {
+            popSingle(current, gameOn)
+//            gemViewsList[current].setImageResource( nonGem )
+            current = rightNeighbour(current)
+        }
+    }
+
+    private fun popSingle(current: Int, gameOn: Boolean)
+    {
+        if (gameOn)
+        {
+            resolveGemEffect(gemViewsList[current].tag as Int)
+        }
+        gemViewsList[current].tag = nonGem
+        var top = topNeighbour(current)
+        var actual = current
+        while (top != null)
+        {
+            swapGems(actual, top, false)
+            actual = top
+            top = topNeighbour(top)
+        }
+        val randomCandy = gems.random()
+        gemViewsList[actual].setImageResource(randomCandy)
+        gemViewsList[actual].tag = randomCandy
+
+    }
+
+
+//    private fun popAll(gameOn: Boolean)
+//    {
+//        allFallDown(gameOn)
+//    }
+//
+//    private fun allFallDown(gameOn: Boolean)
+//    {
+//        for (i in noOfBlocks*noOfBlocks-1 downTo 0 )
+//        {
+//            if (gemViewsList[i].tag == nonGem)
+//            {
+//                Log.i("am2021", "nonGem")
+//            }
+//        }
+//    }
+
+    private fun swapGems(gemSelected : Int, gemToSwitch: Int, shouldCheck : Boolean)
+    {
+        val background1 = gemViewsList[gemSelected].tag as Int
+        val background2 = gemViewsList[gemToSwitch].tag as Int
         gemViewsList[gemSelected].setImageResource(background2)
         gemViewsList[gemToSwitch].setImageResource(background1)
         gemViewsList[gemSelected].tag = background2
         gemViewsList[gemToSwitch].tag = background1
+        if (shouldCheck)
+        {
+            checkForGroups(true)
+        }
+    }
+
+    private fun swapGems(gemSelected : Int, gemToSwitch: Int)
+    {
+        swapGems(gemSelected, gemToSwitch, true)
     }
 
     private fun createBoard() {
@@ -82,10 +246,10 @@ class GameActivity : AppCompatActivity() {
         gridLayout.layoutParams.width = widthOfScreen
         gridLayout.layoutParams.height = widthOfScreen
 
-        for (i in 1..noOfBlocks*noOfBlocks)
+        for (i in 0 until noOfBlocks*noOfBlocks)
         {
             val imageView = ImageView(this)
-            imageView.id = i-1
+            imageView.id = i
             imageView.layoutParams = ViewGroup.LayoutParams(widthOfBlock, widthOfBlock)
             imageView.maxHeight = widthOfBlock
             imageView.maxWidth = widthOfBlock
@@ -95,6 +259,8 @@ class GameActivity : AppCompatActivity() {
             gemViewsList.add(imageView)
             gridLayout.addView(imageView)
         }
+
+        checkForGroups(false)
         //TODO: pozbyc sie gotowych polaczen
     }
 
