@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.study.addprojectname.databinding.ActivityGameBinding
 
@@ -101,12 +100,12 @@ class GameActivity : AppCompatActivity() {
 
     private fun getArrayOfGems(): IntArray {
         return intArrayOf(
-                R.drawable.gems_blue,
-                R.drawable.gems_green,
-                R.drawable.gems_grey,
-                R.drawable.gems_pink,
-                R.drawable.gems_red,
-                R.drawable.gems_yellow
+                R.drawable.gems_water,
+                R.drawable.gems_grass,
+                R.drawable.gems_balance,
+                R.drawable.gems_life,
+                R.drawable.gems_fire,
+                R.drawable.gems_electricity
         )
     }
 }
