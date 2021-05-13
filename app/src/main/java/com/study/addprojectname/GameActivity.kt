@@ -15,7 +15,7 @@ class GameActivity : AppCompatActivity() {
     private var widthOfBlock = 2
     private var widthOfScreen = 0
     private var heightOfScreen = 0
-    var gemViewsList = arrayListOf<ImageView>()
+    private var gemViewsList = arrayListOf<ImageView>()
     var gemSelected = -1
     var gemToSwitch = -1
 
