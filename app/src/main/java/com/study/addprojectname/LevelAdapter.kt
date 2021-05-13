@@ -17,7 +17,6 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
     {
         val levelName : TextView = view.findViewById(R.id.levelName)
-        val playerHealthPoints : TextView = view.findViewById(R.id.playerHP)
         val enemyHealthPoints : TextView = view.findViewById(R.id.enemyHP)
         val monsterImg : ImageView = view.findViewById(R.id.monsterImg)
         val bgLayout : ConstraintLayout = view.findViewById(R.id.bg_layout)
@@ -35,9 +34,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
             holder.thisLevel = list[position]
             holder.levelName.text = list[position].enemy
             holder.levelName.movementMethod = ScrollingMovementMethod()
-            holder.playerHealthPoints.text = list[position].playerHealthPoints.toString()
             holder.enemyHealthPoints.text = list[position].enemyHealthPoints.toString()
-
             val res = context.resources
             val imgNumb = list[position].levelNumber
             holder.monsterImg.setImageResource( res.getIdentifier("pic$imgNumb", "drawable", context.packageName) )

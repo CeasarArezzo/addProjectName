@@ -17,26 +17,23 @@ class Level {
     var reduceDamage : Int = 0
     var timer : Int = Int.MAX_VALUE
     val damagePerTurn : Int
-    val playerHealthPoints : Int
-    val enemyHealthPoints : Int
+    val playerHealthPoints : Int = 100
+    var enemyHealthPoints : Int = 100
 
 
-    constructor(LevelNumber : Int, Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints : Int, DamagePerTurn : Int)
+    constructor(LevelNumber : Int, Enemy: String, Seed : Int, DamagePerTurn : Int)
     {
         this.levelNumber = LevelNumber
         this.enemy = Enemy
         this.seed = Seed
-        this.playerHealthPoints = playerHealthPoints
-        this.enemyHealthPoints = enemyHealthPoints
         this.damagePerTurn = DamagePerTurn
     }
 
-    constructor(LevelNumber : Int, Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints: Int, DamagePerTurn : Int, fireDamage : Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int)
+    constructor(LevelNumber : Int, Enemy: String, Seed : Int, enemyHealthPoints: Int, DamagePerTurn : Int, fireDamage : Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int)
     {
         this.levelNumber = LevelNumber
         this.enemy = Enemy
         this.seed = Seed
-        this.playerHealthPoints = playerHealthPoints
         this.enemyHealthPoints = enemyHealthPoints
         this.damagePerTurn = DamagePerTurn
         this.fireDamage = fireDamage
