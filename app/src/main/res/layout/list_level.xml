@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/monsterImg"
+        android:layout_width="106dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <TextView
+        android:id="@+id/levelName"
+        android:layout_width="267dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/medievalsharp"
+        android:paddingLeft="5dp"
+        android:scrollbars="vertical"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="37sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/monsterImg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/playerHP"
+        android:layout_width="138dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:fontFamily="@font/medievalsharp"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/monsterImg"
+        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:layout_constraintVertical_bias="0.865" />
+
+    <TextView
+        android:id="@+id/enemyHP"
+        android:layout_width="138dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:fontFamily="@font/medievalsharp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/playerHP"
+        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:layout_constraintVertical_bias="0.859" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="54dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/enemyHP"
+        app:layout_constraintEnd_toEndOf="@+id/enemyHP"
+        app:layout_constraintStart_toEndOf="@+id/playerHP"
+        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/enemyhealth" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="54dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/playerHP"
+        app:layout_constraintEnd_toEndOf="@+id/playerHP"
+        app:layout_constraintStart_toStartOf="@+id/playerHP"
+        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:srcCompat="@drawable/playerhealth" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

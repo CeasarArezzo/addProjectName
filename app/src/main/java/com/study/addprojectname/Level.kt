@@ -1,7 +1,8 @@
 package com.study.addprojectname
 
-class Levels {
+class Level {
     private val baseElementDamage = 10
+    val levelNumber : Int
     val enemy : String
     val seed : Int
     var fireDamage : Int = baseElementDamage
@@ -15,24 +16,29 @@ class Levels {
     var healing : Int = 0
     var reduceDamage : Int = 0
     var timer : Int = Int.MAX_VALUE
+    val damagePerTurn : Int
     val playerHealthPoints : Int
     val enemyHealthPoints : Int
 
 
-    constructor(Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints : Int)
+    constructor(LevelNumber : Int, Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints : Int, DamagePerTurn : Int)
     {
+        this.levelNumber = LevelNumber
         this.enemy = Enemy
         this.seed = Seed
         this.playerHealthPoints = playerHealthPoints
         this.enemyHealthPoints = enemyHealthPoints
+        this.damagePerTurn = DamagePerTurn
     }
 
-    constructor(Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints: Int, fireDamage : Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int)
+    constructor(LevelNumber : Int, Enemy: String, Seed : Int, playerHealthPoints : Int, enemyHealthPoints: Int, DamagePerTurn : Int, fireDamage : Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int)
     {
+        this.levelNumber = LevelNumber
         this.enemy = Enemy
         this.seed = Seed
         this.playerHealthPoints = playerHealthPoints
         this.enemyHealthPoints = enemyHealthPoints
+        this.damagePerTurn = DamagePerTurn
         this.fireDamage = fireDamage
         this.waterDamage = waterDamage
         this.grassDamage = grassDamage
