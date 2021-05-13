@@ -69,6 +69,12 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    private fun resolveGemEffect(current: Int)
+    {
+        //TODO: Fix when its called, sometimes is called too few times
+        Log.i("am2021", "resolving effect: $current")
+    }
+
     private fun lowerNeighbour(gemSelected: Int): Int?
     {
         return if (gemSelected + noOfBlocks < noOfBlocks * noOfBlocks)
@@ -115,89 +121,122 @@ class GameActivity : AppCompatActivity() {
     {
         for (i in 0 until noOfBlocks*noOfBlocks)
         {
-            checkRow(i)
-            checkCol(i)
+            checkRow(i, gameOn)
+            checkCol(i, gameOn)
         }
-        popAll(gameOn)
     }
 
-    private fun checkCol(gemId: Int)
+    private fun checkCol(gemId: Int, gameOn: Boolean)
     {
-        var next1 = lowerNeighbour(gemId)
+        val next1 = lowerNeighbour(gemId)
         if (next1 != null)
         {
-            var next2 = lowerNeighbour(next1)
+            val next2 = lowerNeighbour(next1)
             if (next2 != null)
             {
                 if (gemViewsList[gemId].tag == gemViewsList[next1].tag && gemViewsList[next1].tag == gemViewsList[next2].tag)
                 {
-                    markColumns(gemId)
+                    popColumn(gemId, gameOn)
                 }
             }
         }
     }
 
-    private fun checkRow(gemId: Int)
+    private fun checkRow(gemId: Int, gameOn: Boolean)
     {
-        var next1 = rightNeighbour(gemId)
+        val next1 = rightNeighbour(gemId)
         if (next1 != null)
         {
-            var next2 = rightNeighbour(next1)
+            val next2 = rightNeighbour(next1)
             if (next2 != null)
             {
                 if (gemViewsList[gemId].tag == gemViewsList[next1].tag && gemViewsList[next1].tag == gemViewsList[next2].tag)
                 {
-                    markRows(gemId)
+                    popRow(gemId, gameOn)
                 }
             }
         }
     }
 
-    private fun markColumns(gemId: Int)
+    private fun popColumn(gemId: Int, gameOn: Boolean)
     {
-        var current : Int? = gemId;
-        while (current != null)
+        var current : Int? = gemId
+        val initTag = gemViewsList[current!!].tag
+        while (current != null && gemViewsList[current].tag == initTag)
         {
-            gemViewsList[current].tag = nonGem
+            popSingle(current, gameOn)
+//            gemViewsList[current].setImageResource( nonGem )
             current = lowerNeighbour(current)
         }
     }
 
-    private fun markRows(gemId: Int)
+    private fun popRow(gemId: Int, gameOn: Boolean)
     {
-        var current : Int? = gemId;
-        while (current != null)
+        var current : Int? = gemId
+        val initTag = gemViewsList[current!!].tag
+        while (current != null && gemViewsList[current].tag == initTag)
         {
-            gemViewsList[current].tag = nonGem
-            current = lowerNeighbour(current)
+            popSingle(current, gameOn)
+//            gemViewsList[current].setImageResource( nonGem )
+            current = rightNeighbour(current)
         }
     }
 
-    private fun popAll(gameOn: Boolean)
+    private fun popSingle(current: Int, gameOn: Boolean)
     {
-        allFallDown(gameOn)
+        if (gameOn)
+        {
+            resolveGemEffect(gemViewsList[current].tag as Int)
+        }
+        gemViewsList[current].tag = nonGem
+        var top = topNeighbour(current)
+        var actual = current
+        while (top != null)
+        {
+            swapGems(actual, top, false)
+            actual = top
+            top = topNeighbour(top)
+        }
+        val randomCandy = gems.random()
+        gemViewsList[actual].setImageResource(randomCandy)
+        gemViewsList[actual].tag = randomCandy
+
     }
 
-    private fun allFallDown(gameOn: Boolean)
+
+//    private fun popAll(gameOn: Boolean)
+//    {
+//        allFallDown(gameOn)
+//    }
+//
+//    private fun allFallDown(gameOn: Boolean)
+//    {
+//        for (i in noOfBlocks*noOfBlocks-1 downTo 0 )
+//        {
+//            if (gemViewsList[i].tag == nonGem)
+//            {
+//                Log.i("am2021", "nonGem")
+//            }
+//        }
+//    }
+
+    private fun swapGems(gemSelected : Int, gemToSwitch: Int, shouldCheck : Boolean)
     {
-        for (i in noOfBlocks*noOfBlocks-1 downTo 0 )
+        val background1 = gemViewsList[gemSelected].tag as Int
+        val background2 = gemViewsList[gemToSwitch].tag as Int
+        gemViewsList[gemSelected].setImageResource(background2)
+        gemViewsList[gemToSwitch].setImageResource(background1)
+        gemViewsList[gemSelected].tag = background2
+        gemViewsList[gemToSwitch].tag = background1
+        if (shouldCheck)
         {
-            if (gemViewsList[i].tag == nonGem)
-            {
-                Log.i("am2021", "nonGem")
-            }
+            checkForGroups(true)
         }
     }
 
     private fun swapGems(gemSelected : Int, gemToSwitch: Int)
     {
-        var background1 = gemViewsList[gemSelected].tag as Int
-        var background2 = gemViewsList[gemToSwitch].tag as Int
-        gemViewsList[gemSelected].setImageResource(background2)
-        gemViewsList[gemToSwitch].setImageResource(background1)
-        gemViewsList[gemSelected].tag = background2
-        gemViewsList[gemToSwitch].tag = background1
-        checkForGroups(true)
+        swapGems(gemSelected, gemToSwitch, true)
     }
 
     private fun createBoard() {
@@ -221,7 +260,7 @@ class GameActivity : AppCompatActivity() {
             gridLayout.addView(imageView)
         }
 
-        gemViewsList[0].setImageResource(R.drawable.ic_launcher_background)
+        checkForGroups(false)
         //TODO: pozbyc sie gotowych polaczen
     }
 
