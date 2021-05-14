@@ -186,6 +186,7 @@ class GameActivity : AppCompatActivity() {
     {
         if (gameOn)
         {
+            Log.i("am2021", "resolving effect at $current")
             resolveGemEffect(gemViewsList[current].tag as Int)
         }
         gemViewsList[current].tag = nonGem
@@ -197,9 +198,9 @@ class GameActivity : AppCompatActivity() {
             actual = top
             top = topNeighbour(top)
         }
-        val randomCandy = gems.random()
-        gemViewsList[actual].setImageResource(randomCandy)
-        gemViewsList[actual].tag = randomCandy
+        val randomGem = gems.random()
+        gemViewsList[actual].setImageResource(randomGem)
+        gemViewsList[actual].tag = randomGem
 
     }
 
@@ -253,9 +254,9 @@ class GameActivity : AppCompatActivity() {
             imageView.layoutParams = ViewGroup.LayoutParams(widthOfBlock, widthOfBlock)
             imageView.maxHeight = widthOfBlock
             imageView.maxWidth = widthOfBlock
-            val randomCandy = gems.random()
-            imageView.setImageResource(randomCandy)
-            imageView.tag = randomCandy
+            val randomGem = gems.random()
+            imageView.setImageResource(randomGem)
+            imageView.tag = randomGem
             gemViewsList.add(imageView)
             gridLayout.addView(imageView)
         }
