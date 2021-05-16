@@ -15,6 +15,7 @@ class GameActivity : AppCompatActivity() {
     private var widthOfScreen = 0
     private var heightOfScreen = 0
     private var gemViewsList = arrayListOf<ImageView>()
+    private var popAgain : Boolean = false
     var gemSelected = -1
     var gemToSwitch : Int? = -1
     var nonGem : Int = R.drawable.ic_launcher_background
@@ -71,7 +72,6 @@ class GameActivity : AppCompatActivity() {
 
     private fun resolveGemEffect(current: Int)
     {
-        //TODO: Fix when its called, sometimes is called too few times
         Log.i("am2021", "resolving effect: $current")
     }
 
@@ -123,6 +123,11 @@ class GameActivity : AppCompatActivity() {
         {
             checkRow(i, gameOn)
             checkCol(i, gameOn)
+        }
+        if (popAgain)
+        {
+            popAgain = false
+            checkForGroups(gameOn)
         }
     }
 
@@ -201,6 +206,7 @@ class GameActivity : AppCompatActivity() {
         val randomGem = gems.random()
         gemViewsList[actual].setImageResource(randomGem)
         gemViewsList[actual].tag = randomGem
+        popAgain = true
 
     }
 
