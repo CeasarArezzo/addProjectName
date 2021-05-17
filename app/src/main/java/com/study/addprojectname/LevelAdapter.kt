@@ -37,7 +37,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
             holder.enemyHealthPoints.text = list[position].enemyHealthPoints.toString()
             val res = context.resources
             val imgNumb = list[position].levelNumber
-            holder.monsterImg.setImageResource( res.getIdentifier("icon_level$imgNumb", "drawable", context.packageName) )
+            holder.monsterImg.setImageResource( res.getIdentifier("level$imgNumb" + "_icon", "drawable", context.packageName) )
 
         }
 

@@ -19,6 +19,7 @@ class GameActivity : AppCompatActivity() {
     var gemSelected = -1
     var gemToSwitch : Int? = -1
     var nonGem : Int = R.drawable.ic_launcher_background
+    lateinit var opponent : Level
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +29,25 @@ class GameActivity : AppCompatActivity() {
         val viewToBind = binding.root
         setContentView(viewToBind)
 
-//        val displayMetrics = DisplayMetrics()
-        widthOfScreen = windowManager.currentWindowMetrics.bounds.width()
+        widthOfScreen = (windowManager.currentWindowMetrics.bounds.width() * 0.8).toInt()
         heightOfScreen = windowManager.currentWindowMetrics.bounds.height()
         widthOfBlock = widthOfScreen / noOfBlocks
-        createBoard()
 
+        createBoard()
+        setOnSwipeListeners()
+
+        if (savedInstanceState == null)
+        {
+
+        }
+        else
+        {
+
+        }
+
+    }
+
+    private fun setOnSwipeListeners() {
         for (imageView : ImageView in gemViewsList)
         {
             imageView.setOnTouchListener(object : OnSwipeListener(applicationContext) {
@@ -72,6 +86,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun resolveGemEffect(current: Int)
     {
+        //TODO: implement
         Log.i("am2021", "resolving effect: $current")
     }
 

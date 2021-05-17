@@ -14,20 +14,19 @@ class LevelChooseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_choose)
-        initLevels();
+        initLevels()
         levelList.sortBy{it.levelNumber}
         initRecyclerView()
     }
 
     private fun initLevels() {
-        levelList.add(Level(0,"Black Dragon", 1, 10))
-        levelList.add(Level(1,"Blue Dragon", 1, 10))
-        levelList.add(Level(2,"Death", 1, 10))
-        levelList.add(Level(3,"Cthulhu", 1, 10))
-        levelList.add(Level(4,"Demon", 1, 10))
-        levelList.add(Level(5,"Vampire", 1, 10))
-        levelList.add(Level(6,"Bigfoot", 1, 10))
-
+        levelList.add(Level(0,"Black Dragon", 1, 8))
+        levelList.add(Level(1,"Blue Dragon", 1, 8))
+        levelList.add(Level(2,"Death", 1, 8))
+        levelList.add(Level(3,"Cthulhu", 1, 8))
+        levelList.add(Level(4,"Demon", 1, 8))
+        levelList.add(Level(5,"Vampire", 1, 8))
+        levelList.add(Level(6,"Bigfoot", 1, 8))
 
     }
 
