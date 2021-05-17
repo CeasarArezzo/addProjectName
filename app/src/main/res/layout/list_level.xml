@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bg_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background">
+    android:background="@drawable/game_background">
 
     <ImageView
         android:id="@+id/monsterImg"
@@ -66,7 +65,7 @@
         app:layout_constraintStart_toStartOf="@+id/enemyHP"
         app:layout_constraintTop_toBottomOf="@+id/levelName"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/enemyhealth" />
+        app:srcCompat="@drawable/icon_health" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -78,6 +77,6 @@
         app:layout_constraintStart_toEndOf="@+id/monsterImg"
         app:layout_constraintTop_toBottomOf="@+id/levelName"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/trophy" />
+        app:srcCompat="@drawable/icon_leaderboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
