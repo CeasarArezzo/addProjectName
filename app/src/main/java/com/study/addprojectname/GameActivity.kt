@@ -18,8 +18,8 @@ class GameActivity : AppCompatActivity() {
     private var popAgain : Boolean = false
     var gemSelected = -1
     var gemToSwitch : Int? = -1
-    var nonGem : Int = R.drawable.ic_launcher_background
-    lateinit var opponent : Level
+    private var nonGem : Int = R.drawable.ic_launcher_background
+    private lateinit var opponent : Level
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +36,28 @@ class GameActivity : AppCompatActivity() {
         createBoard()
         setOnSwipeListeners()
 
-        if (savedInstanceState == null)
+        if (intent.hasExtra("opponent"))
         {
-
+            val tmpOpponent = intent.getParcelableExtra<Level>("opponent")
+            if (tmpOpponent != null)
+            {
+                opponent = tmpOpponent
+            }
         }
         else
         {
-
+            opponent = Level(0,"Black Dragon", 1, 8)
         }
 
+        loadOpponent(opponent)
+    }
+
+    private fun loadOpponent(opponent: Level)
+    {
+        //TODO: load opponent full size image
+        binding.opponentImage.setImageResource(
+            applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon", "drawable", applicationContext.packageName) )
+        binding.opponentName.text = opponent.enemyName
     }
 
     private fun setOnSwipeListeners() {

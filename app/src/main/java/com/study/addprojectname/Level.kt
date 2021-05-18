@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 data class Level(
     var baseElementDamage: Int,
     var levelNumber : Int = -1,
-    var enemy : String,
+    var enemyName : String,
     var seed : Int,
     var fireDamage : Int = baseElementDamage,
     var waterDamage : Int = baseElementDamage,

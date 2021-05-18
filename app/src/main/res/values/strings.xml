@@ -9,4 +9,5 @@
     <string name="tutorial_text">Tutorial</string>
     <string name="game_name_text">Fantasy Crush</string>
     <string name="imageMenuDescription">buttonBackground</string>
+    <string name="enemy_image_desc">Enemy Image</string>
 </resources>

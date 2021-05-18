@@ -1,8 +1,6 @@
 package com.study.addprojectname
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -29,10 +27,10 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (list.size > 0)
+        if (list.isNotEmpty())
         {
             holder.thisLevel = list[position]
-            holder.levelName.text = list[position].enemy
+            holder.levelName.text = list[position].enemyName
             holder.levelName.movementMethod = ScrollingMovementMethod()
             holder.enemyHealthPoints.text = list[position].enemyHealthPoints.toString()
             val res = context.resources
