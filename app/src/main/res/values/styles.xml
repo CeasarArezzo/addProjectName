@@ -5,7 +5,13 @@
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">@font/medievalsharp</item>
         <item name="android:textStyle">italic|bold</item>
-
     </style>
+
+    <style name="CustomProgressBarHorizontal" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/horizontal_progress_drawable_red</item>
+        <item name="android:minWidth">80dp</item>
+        <item name="android:maxWidth">80dp</item>
+    </style>
+
 
 </resources>
