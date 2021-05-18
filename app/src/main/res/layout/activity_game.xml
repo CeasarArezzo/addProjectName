@@ -37,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/playerHP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opponentName">
@@ -49,11 +49,27 @@
         style="@style/CustomProgressBarHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:progress="75"
+        android:progress="100"
         android:progressDrawable="@drawable/horizontal_progress_drawable_red"
         app:layout_constraintBottom_toBottomOf="@+id/opponentName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/opponentName"
         app:layout_constraintTop_toTopOf="@+id/opponentName" />
+
+    <ProgressBar
+        android:id="@+id/playerHP"
+        style="@style/CustomProgressBarHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="20dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/horizontal_progress_drawable_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
