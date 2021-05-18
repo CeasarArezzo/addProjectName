@@ -29,7 +29,7 @@ class GameActivity : AppCompatActivity() {
         val viewToBind = binding.root
         setContentView(viewToBind)
 
-        widthOfScreen = (windowManager.currentWindowMetrics.bounds.width() * 0.8).toInt()
+        widthOfScreen = (windowManager.currentWindowMetrics.bounds.width() * 0.9).toInt()
         heightOfScreen = windowManager.currentWindowMetrics.bounds.height()
         widthOfBlock = widthOfScreen / noOfBlocks
 

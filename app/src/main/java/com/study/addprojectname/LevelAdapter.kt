@@ -17,6 +17,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
         val levelName : TextView = view.findViewById(R.id.levelName)
         val enemyHealthPoints : TextView = view.findViewById(R.id.enemyHP)
         val monsterImg : ImageView = view.findViewById(R.id.monsterImg)
+        //TODO: do we need this variable?
         val bgLayout : ConstraintLayout = view.findViewById(R.id.bg_layout)
         lateinit var thisLevel : Level
     }

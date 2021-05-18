@@ -45,4 +45,16 @@
 
     </GridLayout>
 
+    <ProgressBar
+        android:id="@+id/enemyHP"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/horizontal_progress_drawable_red"
+        app:layout_constraintBottom_toBottomOf="@+id/opponentName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/opponentName"
+        app:layout_constraintTop_toBottomOf="@+id/opponentImage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
