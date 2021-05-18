@@ -20,7 +20,7 @@ data class Level(
     var reduceDamage : Int = 0,
     var timer : Int = Int.MAX_VALUE,
     var damagePerTurn : Int,
-    var enemyHealthPoints : Int = 100
+    var healthPoints : Int = 100
 ) : Parcelable {
 
     constructor(levelNumber : Int, enemy: String, seed : Int, damagePerTurn : Int) : this(10, levelNumber, enemy, seed, 8, 8, 8, 8, 8, 8,

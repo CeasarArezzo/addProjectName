@@ -58,6 +58,16 @@ class GameActivity : AppCompatActivity() {
         binding.opponentImage.setImageResource(
             applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon", "drawable", applicationContext.packageName) )
         binding.opponentName.text = opponent.enemyName
+        binding.enemyHP.max = opponent.healthPoints
+        binding.enemyHP.progress = binding.enemyHP.max
+    }
+
+    private fun resolveGemEffect(current: Int)
+    {
+        //TODO: implement
+        Log.i("am2021", "resolving effect: $current")
+        //to deal damage, substract from binding.enemyHP.progress
+
     }
 
     private fun setOnSwipeListeners() {
@@ -95,12 +105,6 @@ class GameActivity : AppCompatActivity() {
                 }
             })
         }
-    }
-
-    private fun resolveGemEffect(current: Int)
-    {
-        //TODO: implement
-        Log.i("am2021", "resolving effect: $current")
     }
 
     private fun lowerNeighbour(gemSelected: Int): Int?
