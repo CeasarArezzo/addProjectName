@@ -1,11 +1,16 @@
 package com.study.addprojectname
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.study.addprojectname.databinding.ActivityGameBinding
+
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGameBinding
@@ -22,6 +27,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var opponent : Level
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,8 +39,7 @@ class GameActivity : AppCompatActivity() {
         heightOfScreen = windowManager.currentWindowMetrics.bounds.height()
         widthOfBlock = widthOfScreen / noOfBlocks
 
-        createBoard()
-        setOnSwipeListeners()
+
 
         if (intent.hasExtra("opponent"))
         {
@@ -50,16 +55,18 @@ class GameActivity : AppCompatActivity() {
         }
 
         loadOpponent(opponent)
+        createBoard()
+        setOnSwipeListeners()
     }
 
     private fun loadOpponent(opponent: Level)
     {
-        //TODO: load opponent full size image
         binding.opponentImage.setImageResource(
             applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon_l", "drawable", applicationContext.packageName) )
         binding.opponentName.text = opponent.enemyName
         binding.enemyHP.max = opponent.healthPoints
         binding.enemyHP.progress = binding.enemyHP.max
+
     }
 
     private fun resolveGemEffect(current: Int)
@@ -73,6 +80,7 @@ class GameActivity : AppCompatActivity() {
     private fun setOnSwipeListeners() {
         for (imageView : ImageView in gemViewsList)
         {
+
             imageView.setOnTouchListener(object : OnSwipeListener(applicationContext) {
                 override fun onSwipeLeft() {
                     super.onSwipeLeft()
@@ -161,8 +169,40 @@ class GameActivity : AppCompatActivity() {
             popAgain = false
             checkForGroups(gameOn)
         }
+        Log.i("am2021", "xD")
+        if( gameOn) {
+
+            if (gameWin()) {
+                openDialog("GAME WON \n CONGRATULATIONS!")
+            }
+            getDamage()
+            if (gameLost()) {
+                openDialog("GAME LOST \n GET LUCK NEXT TIME!")
+            }
+        }
     }
 
+    private fun gameWin() : Boolean {
+        return binding.enemyHP.progress <= 0
+    }
+
+    private fun gameLost() : Boolean {
+        return binding.playerHP.progress <= 0
+
+    }
+
+    private fun openDialog(Message : String){
+
+
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(Message)
+        builder.setPositiveButton("OK", null)
+        val dialog = builder.show()
+        val messageText = dialog.findViewById<View>(android.R.id.message) as TextView
+        messageText.gravity = Gravity.CENTER
+        dialog.show()
+    }
     private fun checkCol(gemId: Int, gameOn: Boolean)
     {
         val next1 = lowerNeighbour(gemId)
@@ -300,7 +340,6 @@ class GameActivity : AppCompatActivity() {
         }
 
         checkForGroups(false)
-        //TODO: pozbyc sie gotowych polaczen
     }
 
     private fun getArrayOfGems(): IntArray {
@@ -312,5 +351,9 @@ class GameActivity : AppCompatActivity() {
                 R.drawable.gems_fire,
                 R.drawable.gems_electricity
         )
+    }
+
+    private fun getDamage() {
+        binding.playerHP.progress = binding.playerHP.progress - opponent.damagePerTurn
     }
 }

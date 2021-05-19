@@ -1,7 +1,11 @@
 package com.study.addprojectname
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,4 +48,7 @@ class LevelChooseActivity : AppCompatActivity() {
         }
         recyclerView.adapter = LevelAdapter(this, levelList)
     }
+
+
+
 }

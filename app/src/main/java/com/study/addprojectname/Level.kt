@@ -23,27 +23,44 @@ data class Level(
     var healthPoints : Int = 100
 ) : Parcelable {
 
-    constructor(levelNumber : Int, enemy: String, seed : Int, damagePerTurn : Int) : this(10, levelNumber, enemy, seed, 8, 8, 8, 8, 8, 8,
-        8, 8, 0, 0, Int.MAX_VALUE, 10, 100 ) {
+    constructor(levelNumber : Int, enemy: String, seed : Int, damagePerTurn : Int) : this(
+        10,
+        levelNumber,
+        enemy,
+        seed,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        0,
+        0,
+        Int.MAX_VALUE,
+        10,
+        100 ) {
     }
 
     //todo: fix it nie chce mi sie tego poprawiac jak pierwszego xD
-//    constructor(LevelNumber : Int, Enemy: String, Seed : Int, enemyHealthPoints: Int, DamagePerTurn : Int, fireDamage : Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int) : this() {
-//        this.levelNumber = LevelNumber
-//        this.enemy = Enemy
-//        this.seed = Seed
-//        this.enemyHealthPoints = enemyHealthPoints
-//        this.damagePerTurn = DamagePerTurn
-//        this.fireDamage = fireDamage
-//        this.waterDamage = waterDamage
-//        this.grassDamage = grassDamage
-//        this.electricityDamage = electricityDamage
-//        this.darkDamage = darkDamage
-//        this.lightDamage = lightDamage
-//        this.groundDamage = groundDamage
-//        this.airDamage = airDamage
-//        this.healing = healing
-//        this.reduceDamage = reduceDamage
-//        this.timer = timer
-//    }
+    constructor(LevelNumber : Int, Enemy: String, Seed : Int, DamagePerTurn : Int, fireDamage : Int, waterDamage: Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int) : this (
+        10,
+        LevelNumber,
+        Enemy,
+        Seed ,
+        fireDamage ,
+        waterDamage,
+        grassDamage,
+        electricityDamage,
+        darkDamage,
+        lightDamage,
+        groundDamage,
+        airDamage,
+        healing,
+        reduceDamage,
+        timer,
+        DamagePerTurn,
+        100
+    )
 }

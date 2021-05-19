@@ -1,6 +1,8 @@
 package com.study.addprojectname
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -36,8 +38,8 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
             holder.enemyHealthPoints.text = list[position].healthPoints.toString()
             val res = context.resources
             val imgNumb = list[position].levelNumber
+            setListeners(holder, holder.bgLayout)
             holder.monsterImg.setImageResource( res.getIdentifier("level$imgNumb" + "_icon", "drawable", context.packageName) )
-
         }
 
     }
@@ -46,5 +48,15 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
         return list.size
     }
 
+    private fun setListeners(holder: ViewHolder, bgLayout: ConstraintLayout)
+    {
+        bgLayout.setOnClickListener() {
+            val intent = Intent(context, GameActivity::class.java)
+            intent.putExtra("opponent", holder.thisLevel)
+            (context as Activity).startActivity(intent)
 
+            true
+        }
+
+    }
 }
