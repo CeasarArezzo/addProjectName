@@ -72,10 +72,46 @@ class GameActivity : AppCompatActivity() {
     private fun resolveGemEffect(current: Int)
     {
         //TODO: implement
-        Log.i("am2021", "resolving effect: $current")
+        var damage = 0
+        when (current) {
+            R.drawable.gems_water -> {
+                Log.i("am2021", "water")
+
+                damage = opponent.waterDamage
+            }
+            R.drawable.gems_grass -> {
+                Log.i("am2021", "grass")
+
+                damage = opponent.grassDamage
+            }
+            R.drawable.gems_balance -> {
+                Log.i("am2021", "balance")
+
+                binding.playerHP.progress += damage
+
+            }
+            R.drawable.gems_life -> {
+                Log.i("am2021", "life")
+
+                binding.playerHP.progress += opponent.damagePerTurn
+            }
+            R.drawable.gems_fire -> {
+                Log.i("am2021", "fire")
+
+                damage = opponent.fireDamage
+            }
+            else -> {
+                Log.i("am2021", "elect")
+
+                damage = opponent.electricityDamage
+            }
+        }
+        damageEnemy(damage)
         //to deal damage, substract from binding.enemyHP.progress
 
     }
+
+
 
     private fun setOnSwipeListeners() {
         for (imageView : ImageView in gemViewsList)
@@ -175,7 +211,7 @@ class GameActivity : AppCompatActivity() {
             if (gameWin()) {
                 openDialog("GAME WON \n CONGRATULATIONS!")
             }
-            getDamage()
+            damagePlayer()
             if (gameLost()) {
                 openDialog("GAME LOST \n GET LUCK NEXT TIME!")
             }
@@ -197,7 +233,9 @@ class GameActivity : AppCompatActivity() {
 
         val builder = AlertDialog.Builder(this)
         builder.setMessage(Message)
-        builder.setPositiveButton("OK", null)
+        builder.setPositiveButton("OK"){ dialog, which ->
+            finish()
+        }
         val dialog = builder.show()
         val messageText = dialog.findViewById<View>(android.R.id.message) as TextView
         messageText.gravity = Gravity.CENTER
@@ -353,7 +391,13 @@ class GameActivity : AppCompatActivity() {
         )
     }
 
-    private fun getDamage() {
+    private fun damagePlayer() {
         binding.playerHP.progress = binding.playerHP.progress - opponent.damagePerTurn
+    }
+    private fun damageEnemy(damage: Int) {
+
+        Log.i("am2021", "damage for: $damage")
+
+        binding.enemyHP.progress -= damage
     }
 }
