@@ -56,7 +56,7 @@ class GameActivity : AppCompatActivity() {
     {
         //TODO: load opponent full size image
         binding.opponentImage.setImageResource(
-            applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon", "drawable", applicationContext.packageName) )
+            applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon_l", "drawable", applicationContext.packageName) )
         binding.opponentName.text = opponent.enemyName
         binding.enemyHP.max = opponent.healthPoints
         binding.enemyHP.progress = binding.enemyHP.max
