@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
     //TODO: recyclerview z wyborem poziomow
     //TODO: animacje, do zrobienia przy uzyciu biblioteki
     //https://github.com/daimajia/AndroidViewAnimations
-    //TODO: poprawić obrazki, dodać im przezroczyste tlo?
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

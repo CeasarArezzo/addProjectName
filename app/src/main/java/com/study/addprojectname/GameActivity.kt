@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.study.addprojectname.databinding.ActivityGameBinding
 
 
@@ -71,7 +73,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun resolveGemEffect(current: Int)
     {
-        //TODO: implement
+        //TODO: implement, regulate damage dealt
         var damage = 0
         when (current) {
             R.drawable.gems_water -> {
@@ -208,17 +210,21 @@ class GameActivity : AppCompatActivity() {
         Log.i("am2021", "xD")
         if( gameOn) {
 
-            if (gameWin()) {
+            if (gameWon()) {
                 openDialog("GAME WON \n CONGRATULATIONS!")
             }
-            damagePlayer()
-            if (gameLost()) {
-                openDialog("GAME LOST \n GET LUCK NEXT TIME!")
+            else
+            {
+                damagePlayer()
+                if (gameLost()) {
+                    openDialog("GAME LOST \n GET LUCK NEXT TIME!")
+                }
             }
+
         }
     }
 
-    private fun gameWin() : Boolean {
+    private fun gameWon() : Boolean {
         return binding.enemyHP.progress <= 0
     }
 
@@ -228,9 +234,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openDialog(Message : String){
-
-
-
         val builder = AlertDialog.Builder(this)
         builder.setMessage(Message)
         builder.setPositiveButton("OK"){ dialog, which ->
@@ -399,5 +402,6 @@ class GameActivity : AppCompatActivity() {
         Log.i("am2021", "damage for: $damage")
 
         binding.enemyHP.progress -= damage
+        YoYo.with(Techniques.Wobble).duration(700).playOn(binding.opponentImage)
     }
 }

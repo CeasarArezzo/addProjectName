@@ -28,14 +28,14 @@ data class Level(
         levelNumber,
         enemy,
         seed,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
         0,
         0,
         Int.MAX_VALUE,
@@ -43,7 +43,6 @@ data class Level(
         100 ) {
     }
 
-    //todo: fix it nie chce mi sie tego poprawiac jak pierwszego xD
     constructor(LevelNumber : Int, Enemy: String, Seed : Int, DamagePerTurn : Int, fireDamage : Int, waterDamage: Int, grassDamage : Int, electricityDamage : Int, darkDamage : Int, lightDamage : Int, groundDamage : Int, airDamage : Int, healing : Int, reduceDamage : Int, timer : Int) : this (
         10,
         LevelNumber,
