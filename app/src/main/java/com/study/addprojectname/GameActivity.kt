@@ -53,7 +53,8 @@ class GameActivity : AppCompatActivity() {
         }
         else
         {
-            opponent = Level(0,"Black Dragon", 1, 8)
+            opponent = Level(0,"Black Dragon", 1, 4, 4,8,1,4,1,8,0,6,5,0, Int.MAX_VALUE,0, 150)
+
         }
 
         loadOpponent(opponent)
@@ -68,12 +69,13 @@ class GameActivity : AppCompatActivity() {
         binding.opponentName.text = opponent.enemyName
         binding.enemyHP.max = opponent.healthPoints
         binding.enemyHP.progress = binding.enemyHP.max
+        binding.playerHP.max= opponent.health
+        binding.playerHP.progress=  binding.playerHP.max
 
     }
 
     private fun resolveGemEffect(current: Int)
     {
-        //TODO: implement, regulate damage dealt
         var damage = 0
         when (current) {
             R.drawable.gems_water -> {
@@ -88,8 +90,10 @@ class GameActivity : AppCompatActivity() {
             }
             R.drawable.gems_balance -> {
                 Log.i("am2021", "balance")
+                val temp = binding.playerHP.progress
+                binding.playerHP.progress = ( binding.playerHP.max.toFloat() * (( binding.playerHP.progress.toFloat() / binding.playerHP.max.toFloat() +  binding.enemyHP.progress.toFloat() / opponent.healthPoints.toFloat()) /2f)).toInt()
+                damage = (binding.enemyHP.max.toFloat() * ((binding.enemyHP.progress.toFloat() / opponent.healthPoints.toFloat() - temp.toFloat() / binding.playerHP.max.toFloat())/2f)).toInt()
 
-                binding.playerHP.progress += damage
 
             }
             R.drawable.gems_life -> {
@@ -109,7 +113,6 @@ class GameActivity : AppCompatActivity() {
             }
         }
         damageEnemy(damage)
-        //to deal damage, substract from binding.enemyHP.progress
 
     }
 
@@ -208,20 +211,7 @@ class GameActivity : AppCompatActivity() {
             checkForGroups(gameOn)
         }
         Log.i("am2021", "xD")
-        if( gameOn) {
 
-            if (gameWon()) {
-                openDialog("GAME WON \n CONGRATULATIONS!")
-            }
-            else
-            {
-                damagePlayer()
-                if (gameLost()) {
-                    openDialog("GAME LOST \n GET LUCK NEXT TIME!")
-                }
-            }
-
-        }
     }
 
     private fun gameWon() : Boolean {
@@ -351,6 +341,20 @@ class GameActivity : AppCompatActivity() {
         if (shouldCheck)
         {
             checkForGroups(true)
+
+
+                if (gameWon()) {
+                    openDialog("GAME WON \n CONGRATULATIONS!")
+                }
+                else
+                {
+                    damagePlayer()
+                    if (gameLost()) {
+                        openDialog("GAME LOST \n GET LUCK NEXT TIME!")
+                    }
+                }
+
+
         }
     }
 
@@ -395,13 +399,16 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun damagePlayer() {
-        binding.playerHP.progress = binding.playerHP.progress - opponent.damagePerTurn
+        binding.playerHP.progress -= opponent.damagePerTurn
     }
     private fun damageEnemy(damage: Int) {
 
         Log.i("am2021", "damage for: $damage")
 
         binding.enemyHP.progress -= damage
+        val monsterPer = binding.enemyHP.progress.toFloat() / binding.enemyHP.max.toFloat()
+        val playerPer = binding.playerHP.progress.toFloat() / binding.playerHP.max.toFloat()
+        Log.i("am2021", "player %: $playerPer  enemy %: $monsterPer")
         YoYo.with(Techniques.Wobble).duration(700).playOn(binding.opponentImage)
     }
 }
