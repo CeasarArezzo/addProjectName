@@ -29,7 +29,7 @@ class LevelChooseActivity : AppCompatActivity() {
         levelList.add(Level(2,"Death", 10, 8,4,4,10,6,1,10,6,4,8,0, Int.MAX_VALUE, 0,250))
         levelList.add(Level(3,"Cthulhu", 11, 10,6,2,6,10,0,10,6,10,10,0, Int.MAX_VALUE,0, 300))
         levelList.add(Level(4,"Demon", 46, 12, 2,10,4,4,10,4,6,10,12,0, Int.MAX_VALUE, 0,350))
-        levelList.add(Level(5,"Vampire", 53, 14,60,0,0,0,0,0,0,0,14,0, Int.MAX_VALUE, 0,400))
+        levelList.add(Level(5,"Vampire", 53, 14,50,0,0,0,0,0,0,0,14,0, Int.MAX_VALUE, 0,400))
         levelList.add(Level(6,"Bigfoot", 342, 20,8,8,8,8,8,8,8,8,0,0, Int.MAX_VALUE, 0,450))
 
     }

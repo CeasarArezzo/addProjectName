@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
@@ -17,6 +18,7 @@ import com.study.addprojectname.databinding.ActivityGameBinding
 class GameActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGameBinding
     private val gems : IntArray = getArrayOfGems()
+    private var score : Int = 0
     private val noOfBlocks = 8
     private var widthOfBlock = 2
     private var widthOfScreen = 0
@@ -64,6 +66,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun loadOpponent(opponent: Level)
     {
+        binding.scoreTextView.text = "0"
         binding.opponentImage.setImageResource(
             applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon_l", "drawable", applicationContext.packageName) )
         binding.opponentName.text = opponent.enemyName
@@ -91,7 +94,7 @@ class GameActivity : AppCompatActivity() {
             R.drawable.gems_balance -> {
                 Log.i("am2021", "balance")
                 val temp = binding.playerHP.progress
-                binding.playerHP.progress = ( binding.playerHP.max.toFloat() * (( binding.playerHP.progress.toFloat() / binding.playerHP.max.toFloat() +  binding.enemyHP.progress.toFloat() / opponent.healthPoints.toFloat()) /2f)).toInt()
+                binding.playerHP.progress = ( binding.playerHP.max.toFloat() * (( binding.playerHP.progress.toFloat() / binding.playerHP.max.toFloat() +  binding.enemyHP.progress.toFloat() / opponent.healthPoints.toFloat()) /2f)).toInt() + opponent.damagePerTurn
                 damage = (binding.enemyHP.max.toFloat() * ((binding.enemyHP.progress.toFloat() / opponent.healthPoints.toFloat() - temp.toFloat() / binding.playerHP.max.toFloat())/2f)).toInt()
 
 
@@ -99,7 +102,7 @@ class GameActivity : AppCompatActivity() {
             R.drawable.gems_life -> {
                 Log.i("am2021", "life")
 
-                binding.playerHP.progress += opponent.damagePerTurn
+                binding.playerHP.progress += opponent.damagePerTurn /3
             }
             R.drawable.gems_fire -> {
                 Log.i("am2021", "fire")
@@ -113,6 +116,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
         damageEnemy(damage)
+
 
     }
 
@@ -270,32 +274,39 @@ class GameActivity : AppCompatActivity() {
     {
         var current : Int? = gemId
         val initTag = gemViewsList[current!!].tag
+        var points = 0
         while (current != null && gemViewsList[current].tag == initTag)
         {
-            popSingle(current, gameOn)
+            points += popSingle(current, gameOn)
 //            gemViewsList[current].setImageResource( nonGem )
             current = lowerNeighbour(current)
         }
+        getPoints(points)
+
     }
 
     private fun popRow(gemId: Int, gameOn: Boolean)
     {
         var current : Int? = gemId
         val initTag = gemViewsList[current!!].tag
+        var points = 0
         while (current != null && gemViewsList[current].tag == initTag)
         {
-            popSingle(current, gameOn)
+            points += popSingle(current, gameOn)
 //            gemViewsList[current].setImageResource( nonGem )
             current = rightNeighbour(current)
         }
+        getPoints(points)
     }
 
-    private fun popSingle(current: Int, gameOn: Boolean)
+    private fun popSingle(current: Int, gameOn: Boolean) : Int
     {
+        var points = 0
         if (gameOn)
         {
             Log.i("am2021", "resolving effect at $current")
             resolveGemEffect(gemViewsList[current].tag as Int)
+            points = 1
         }
         gemViewsList[current].tag = nonGem
         var top = topNeighbour(current)
@@ -310,9 +321,19 @@ class GameActivity : AppCompatActivity() {
         gemViewsList[actual].setImageResource(randomGem)
         gemViewsList[actual].tag = randomGem
         popAgain = true
-
+        return points
     }
 
+    private fun getPoints(points : Int) {
+
+        if (points  != 0) {
+            val toAdd = points * 10
+            Toast.makeText(this, "+ $toAdd Points", Toast.LENGTH_SHORT).show()
+            score += toAdd
+            val n = binding.scoreTextView.text.toString().toInt()
+            binding.scoreTextView.text = (n + toAdd).toString()
+        }
+    }
 
 //    private fun popAll(gameOn: Boolean)
 //    {
@@ -406,9 +427,9 @@ class GameActivity : AppCompatActivity() {
         Log.i("am2021", "damage for: $damage")
 
         binding.enemyHP.progress -= damage
-        val monsterPer = binding.enemyHP.progress.toFloat() / binding.enemyHP.max.toFloat()
-        val playerPer = binding.playerHP.progress.toFloat() / binding.playerHP.max.toFloat()
-        Log.i("am2021", "player %: $playerPer  enemy %: $monsterPer")
+
         YoYo.with(Techniques.Wobble).duration(700).playOn(binding.opponentImage)
     }
+
+    
 }
