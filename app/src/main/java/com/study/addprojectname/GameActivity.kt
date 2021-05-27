@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.study.addprojectname.databinding.ActivityGameBinding
 
 
-class GameActivity : AppCompatActivity() {
+class   GameActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGameBinding
     private val gems : IntArray = getArrayOfGems()
     private var score : Int = 0
