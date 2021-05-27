@@ -12,6 +12,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.study.addprojectname.databinding.ActivityGameBinding
 
 
@@ -66,7 +69,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun loadOpponent(opponent: Level)
     {
-        binding.scoreTextView.text = "0"
+        binding.scoreTextView.text = score.toString()
         binding.opponentImage.setImageResource(
             applicationContext.resources.getIdentifier("level" + opponent.levelNumber + "_icon_l", "drawable", applicationContext.packageName) )
         binding.opponentName.text = opponent.enemyName
@@ -214,7 +217,6 @@ class GameActivity : AppCompatActivity() {
             popAgain = false
             checkForGroups(gameOn)
         }
-        Log.i("am2021", "xD")
 
     }
 
@@ -229,6 +231,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun openDialog(Message : String){
         val builder = AlertDialog.Builder(this)
+        uploadScoredPoints()
         builder.setMessage(Message)
         builder.setPositiveButton("OK"){ dialog, which ->
             finish()
@@ -238,6 +241,28 @@ class GameActivity : AppCompatActivity() {
         messageText.gravity = Gravity.CENTER
         dialog.show()
     }
+
+    private fun uploadScoredPoints() {
+        val user = FirebaseAuth.getInstance().currentUser
+        val database = Firebase.database.reference
+        if (user != null)
+        {
+            if (user.email != null)
+            {
+                database.child("leaderboard").child("1").child(user.email!!.substringBefore('@')).get().addOnSuccessListener {
+                    val previousScore = it.value as Long
+                    if (previousScore < score)
+                    {
+                        database.child("leaderboard").child("1").child(user.email!!.substringBefore('@')).setValue(score)
+                    }
+                    Log.i("am2021", "Got value ${it.value}")
+                }.addOnFailureListener{
+                    Log.e("firebase", "Error getting data", it)
+                }
+            }
+        }
+    }
+
     private fun checkCol(gemId: Int, gameOn: Boolean)
     {
         val next1 = lowerNeighbour(gemId)

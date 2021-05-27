@@ -3,7 +3,11 @@ package com.study.addprojectname
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MenuActivity : AppCompatActivity() {
     //todo list: remove when finished
