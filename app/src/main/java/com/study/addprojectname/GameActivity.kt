@@ -249,13 +249,20 @@ class GameActivity : AppCompatActivity() {
         {
             if (user.email != null)
             {
-                database.child("leaderboard").child("1").child(user.email!!.substringBefore('@')).get().addOnSuccessListener {
-                    val previousScore = it.value as Long
-                    if (previousScore < score)
+                database.child("leaderboard").child(opponent.levelNumber.toString()).child(user.email!!.substringBefore('@')).get().addOnSuccessListener {
+                    if (it.value != null)
                     {
-                        database.child("leaderboard").child("1").child(user.email!!.substringBefore('@')).setValue(score)
+                        val previousScore = it.value as Long
+                        if (previousScore < score)
+                        {
+                            database.child("leaderboard").child(opponent.levelNumber.toString()).child(user.email!!.substringBefore('@')).setValue(score)
+                        }
+                        Log.i("am2021", "Got value ${it.value}")
                     }
-                    Log.i("am2021", "Got value ${it.value}")
+                    else
+                    {
+                        database.child("leaderboard").child(opponent.levelNumber.toString()).child(user.email!!.substringBefore('@')).setValue(score)
+                    }
                 }.addOnFailureListener{
                     Log.e("firebase", "Error getting data", it)
                 }
