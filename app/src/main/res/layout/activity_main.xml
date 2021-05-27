@@ -4,138 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/menu_background">
+    tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/settingsButton"
+    <Button
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="363dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="683dp"
-        android:background="@null"
-        android:onClick="buttonPressed"
-        android:contentDescription="@string/imageMenuDescription"
+        android:onClick="register"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/menu_gear_option" />
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintVertical_bias="0.17000002" />
 
-    <ImageButton
-        android:id="@+id/chooseLevelButton"
+    <Button
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginEnd="98dp"
-        android:background="@null"
-        android:onClick="buttonPressed"
-        android:contentDescription="@string/imageMenuDescription"
-        app:layout_constraintBottom_toTopOf="@+id/tutorialButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quickGameButton"
-        app:srcCompat="@drawable/menu_button_background" />
-
-    <ImageButton
-        android:id="@+id/quickGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:onClick="buttonPressed"
-        android:contentDescription="@string/imageMenuDescription"
+        android:onClick="login"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameNameText"
-        app:layout_constraintVertical_bias="0.22000003"
-        app:srcCompat="@drawable/menu_button_background" />
+        app:layout_constraintEnd_toEndOf="@+id/titleText"
+        app:layout_constraintStart_toStartOf="@+id/titleText"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        app:layout_constraintVertical_bias="0.13999999" />
 
-    <ImageButton
-        android:id="@+id/tutorialButton"
+    <TextView
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:onClick="buttonPressed"
-        android:contentDescription="@string/imageMenuDescription"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quickGameButton"
-        app:layout_constraintVertical_bias="0.45999998"
-        app:srcCompat="@drawable/menu_button_background" />
-
-    <TextView
-        android:id="@+id/quickGameText"
-        android:layout_width="194dp"
-        android:layout_height="35dp"
-        android:fontFamily="@font/medievalsharp"
-        android:text="@string/quick_game_text"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/quickGameButton"
-        app:layout_constraintEnd_toEndOf="@+id/quickGameButton"
-        app:layout_constraintStart_toStartOf="@+id/quickGameButton"
-        app:layout_constraintTop_toTopOf="@+id/quickGameButton"
-        app:layout_constraintVertical_bias="0.63" />
-
-    <TextView
-        android:id="@+id/chooseLevelText"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/medievalsharp"
-        android:text="@string/choose_level_text"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/chooseLevelButton"
-        app:layout_constraintEnd_toEndOf="@+id/chooseLevelButton"
-        app:layout_constraintStart_toStartOf="@+id/chooseLevelButton"
-        app:layout_constraintTop_toTopOf="@+id/chooseLevelButton"
-        app:layout_constraintVertical_bias="0.71000004" />
-
-    <TextView
-        android:id="@+id/tutorialText"
-        android:layout_width="196dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/medievalsharp"
-        android:text="@string/tutorial_text"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tutorialButton"
-        app:layout_constraintEnd_toEndOf="@+id/tutorialButton"
-        app:layout_constraintStart_toStartOf="@+id/tutorialButton"
-        app:layout_constraintTop_toTopOf="@+id/tutorialButton" />
-
-    <TextView
-        android:id="@+id/gameNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/medievalsharp"
-        android:text="@string/game_name_text"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="50sp"
+        android:text="TicTacToe game"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" />
-
+        app:layout_constraintVertical_bias="0.25" />
 </androidx.constraintlayout.widget.ConstraintLayout>
