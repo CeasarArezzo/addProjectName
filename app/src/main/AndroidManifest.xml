@@ -7,10 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AddProjectName"
-        android:screenOrientation="portrait">
-        <activity android:name=".LevelChooseActivity"/>
+        android:theme="@style/Theme.AddProjectName">
+        <activity android:name=".LeaderBoard_Activity"></activity>
+        <activity android:name=".LevelChooseActivity" />
         <activity android:name=".TutorialActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".SettingsActivity" />

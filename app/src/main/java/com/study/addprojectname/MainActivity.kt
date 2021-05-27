@@ -9,7 +9,6 @@ class MainActivity : AppCompatActivity() {
 
     //todo list: remove when finished
     //TODO: zapisywanie wynikow przez baze firebase, leaderboard
-    //TODO: recyclerview z wyborem poziomow
     //TODO: animacje, do zrobienia przy uzyciu biblioteki
     //https://github.com/daimajia/AndroidViewAnimations
 

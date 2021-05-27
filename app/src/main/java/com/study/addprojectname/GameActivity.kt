@@ -328,7 +328,6 @@ class GameActivity : AppCompatActivity() {
 
         if (points  != 0) {
             val toAdd = points * 10
-            Toast.makeText(this, "+ $toAdd Points", Toast.LENGTH_SHORT).show()
             score += toAdd
             val n = binding.scoreTextView.text.toString().toInt()
             binding.scoreTextView.text = (n + toAdd).toString()
