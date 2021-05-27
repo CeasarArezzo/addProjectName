@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/levelName"
+        android:id="@+id/playerName"
         android:layout_width="267dp"
         android:layout_height="47dp"
         android:fontFamily="@font/medievalsharp"
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/enemyHP"
         app:layout_constraintEnd_toEndOf="@+id/enemyHP"
         app:layout_constraintStart_toStartOf="@+id/enemyHP"
-        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:layout_constraintTop_toBottomOf="@+id/playerName"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/icon_health" />
 
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toEndOf="@+id/monsterImg"
-        app:layout_constraintTop_toBottomOf="@+id/levelName"
+        app:layout_constraintTop_toBottomOf="@+id/playerName"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_leaderboard" />
 

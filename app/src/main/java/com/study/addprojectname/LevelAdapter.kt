@@ -16,7 +16,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
 {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
     {
-        val levelName : TextView = view.findViewById(R.id.levelName)
+        val levelName : TextView = view.findViewById(R.id.playerName)
         val enemyHealthPoints : TextView = view.findViewById(R.id.enemyHP)
         val monsterImg : ImageView = view.findViewById(R.id.monsterImg)
         val bgLayout : ConstraintLayout = view.findViewById(R.id.bg_layout)
