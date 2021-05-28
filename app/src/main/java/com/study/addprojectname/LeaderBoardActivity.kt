@@ -26,16 +26,6 @@ class LeaderBoardActivity : AppCompatActivity() {
 
     private fun initRecyclerView()
     {
-
-        leaderBoardList = if(intent.hasExtra("LevelNum")) {
-            val levelNum = intent.getIntExtra("LevelNum", -1)
-            createLevelList(levelNum)
-        } else {
-            createAllLevelList()
-        }
-
-
-
         recyclerView = findViewById(R.id.RecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(
             this,
@@ -45,50 +35,55 @@ class LeaderBoardActivity : AppCompatActivity() {
         recyclerView.apply {
             addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         }
+        Log.i("am2021", "list size " + leaderBoardList.size)
         recyclerView.adapter = LeaderBoardAdapter(this, leaderBoardList)
+
+        if (intent.hasExtra("LevelNum")){
+            val levelNum = intent.getIntExtra("LevelNum", -1)
+            createLevelList(levelNum)
+        }
+        else{
+            createAllLevelList()
+        }
     }
 
-    private fun createLevelList(levelNum : Int) : ArrayList<LeaderBoardRecord> {
-
-        val newList : ArrayList<LeaderBoardRecord> = ArrayList()
+    private fun createLevelList(levelNum : Int){
 
         database.child("leaderboard").child(levelNum.toString()).get().addOnSuccessListener {
             Log.i("am2021", "Got value ${it.value}")
             for (child in it.children) {
                 if (child.key != null && child.value != null) {
-                    newList.add(LeaderBoardRecord(levelNum.toString(), child.key.toString(), child.value.toString()))
-                    Log.i("am2021", "LEVEL $levelNum Got key ${newList.last()}")
+                    leaderBoardList.add(LeaderBoardRecord(levelNum.toString(), child.key.toString(), child.value.toString()))
+//                    Log.i("am2021", "LEVEL $levelNum Got key ${newList.last()}")
                 }
             }
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
-        return newList
     }
 
-    private fun createAllLevelList() : ArrayList<LeaderBoardRecord> {
-
-        val newList : ArrayList<LeaderBoardRecord> = ArrayList()
+    private fun createAllLevelList(){
 
         for(i in 0..6) {
             database.child("leaderboard").child(i.toString()).get().addOnSuccessListener {
                 Log.i("am2021", "Got value ${it.value}")
                 for (child in it.children) {
                     if (child.key != null && child.value != null) {
-                        newList.add(
+                        leaderBoardList.add(
                             LeaderBoardRecord(
                                 i.toString(),
                                 child.key.toString(),
                                 child.value.toString()
                             )
                         )
-                        Log.i("am2021", "ALL LEVELS Got key ${newList.last()}")
+//                        Log.i("am2021", "new list size = " + newList.size)
+//                        Log.i("am2021", "ALL LEVELS Got key ${newList.last()}")
                     }
                 }
+                recyclerView.adapter?.notifyDataSetChanged()
             }.addOnFailureListener {
                 Log.e("firebase", "Error getting data", it)
             }
         }
-        return newList
     }
 }

@@ -214,7 +214,6 @@ class   GameActivity : AppCompatActivity() {
             popAgain = false
             checkForGroups(gameOn)
         }
-        Log.i("am2021", "xD")
 
     }
 
