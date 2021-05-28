@@ -20,6 +20,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
         val enemyHealthPoints : TextView = view.findViewById(R.id.enemyHP)
         val monsterImg : ImageView = view.findViewById(R.id.monsterImg)
         val bgLayout : ConstraintLayout = view.findViewById(R.id.bg_layout)
+        val showLeaderboard : ImageView = view.findViewById(R.id.showLeaderboard)
         lateinit var thisLevel : Level
     }
 
@@ -37,7 +38,7 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
             holder.enemyHealthPoints.text = list[position].healthPoints.toString()
             val res = context.resources
             val imgNumb = list[position].levelNumber
-            setListeners(holder, holder.bgLayout)
+            setListeners(holder, holder.bgLayout, holder.showLeaderboard)
             holder.monsterImg.setImageResource( res.getIdentifier("level$imgNumb" + "_icon", "drawable", context.packageName) )
         }
 
@@ -47,11 +48,22 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
         return list.size
     }
 
-    private fun setListeners(holder: ViewHolder, bgLayout: ConstraintLayout)
+    private fun setListeners(
+        holder: ViewHolder,
+        bgLayout: ConstraintLayout,
+        showLeaderboard: ImageView
+    )
     {
         bgLayout.setOnClickListener() {
             val intent = Intent(context, GameActivity::class.java)
             intent.putExtra("opponent", holder.thisLevel)
+            (context as Activity).startActivity(intent)
+
+            true
+        }
+        showLeaderboard.setOnClickListener(){
+            val intent = Intent(context, LeaderBoardActivity::class.java)
+            intent.putExtra("LevelNum", holder.thisLevel.levelNumber)
             (context as Activity).startActivity(intent)
 
             true

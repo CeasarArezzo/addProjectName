@@ -57,6 +57,7 @@ class LeaderBoardActivity : AppCompatActivity() {
 //                    Log.i("am2021", "LEVEL $levelNum Got key ${newList.last()}")
                 }
             }
+            recyclerView.adapter?.notifyDataSetChanged()
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }

@@ -68,7 +68,7 @@
         app:srcCompat="@drawable/icon_health" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/showLeaderboard"
         android:layout_width="83dp"
         android:layout_height="82dp"
         app:layout_constraintBottom_toTopOf="@+id/enemyHP"
