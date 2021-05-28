@@ -9,15 +9,15 @@
 
     <ImageButton
         android:id="@+id/settingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="37dp"
+        android:layout_height="36dp"
         android:layout_marginStart="363dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="683dp"
         android:background="@null"
-        android:onClick="buttonPressed"
         android:contentDescription="@string/imageMenuDescription"
+        android:onClick="buttonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -137,5 +137,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.120000005" />
+
+    <ImageButton
+        android:id="@+id/leaderBoardButton"
+        android:layout_width="64dp"
+        android:layout_height="63dp"
+        android:background="#00FFFFFF"
+        android:onClick="buttonPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@drawable/icon_leaderboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

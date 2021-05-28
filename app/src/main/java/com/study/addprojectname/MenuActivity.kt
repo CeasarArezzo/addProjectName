@@ -38,6 +38,10 @@ class MenuActivity : AppCompatActivity() {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
+            R.id.leaderBoardButton -> {
+                val intent = Intent(this, LeaderBoardActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

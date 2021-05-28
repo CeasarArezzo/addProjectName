@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/game_background"
-    tools:context=".LeaderBoard_Activity">
+    tools:context=".LeaderBoardActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView"
         android:layout_width="408dp"
         android:layout_height="666dp"
         app:layout_constraintBottom_toBottomOf="parent"

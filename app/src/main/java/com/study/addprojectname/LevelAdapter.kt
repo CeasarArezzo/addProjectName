@@ -57,5 +57,6 @@ class LevelAdapter(private val context : Context, private val list: List<Level>)
             true
         }
 
+
     }
 }
