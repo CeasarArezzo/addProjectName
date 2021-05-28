@@ -33,7 +33,7 @@ class LeaderBoardAdapter(private val context : Context, private val list: List<L
         {
             holder.thisLeaderBoardRecord = list[position]
             holder.playerName.text = list[position].playerName
-            holder.points.text = (list[position].score + "points")
+            holder.points.text = (list[position].score + " points")
             val res = context.resources
             val imgNumb = list[position].levelName.toInt()
             holder.monster.setImageResource( res.getIdentifier("level$imgNumb" + "_icon", "drawable", context.packageName) )

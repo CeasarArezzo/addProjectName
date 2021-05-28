@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/playerName"
-        android:layout_width="194dp"
-        android:layout_height="42dp"
+        android:layout_width="173dp"
+        android:layout_height="41dp"
         android:fontFamily="@font/medievalsharp"
         android:paddingLeft="5dp"
         android:scrollbars="vertical"
@@ -37,24 +37,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintVertical_bias="0.65999997" />
 
     <TextView
         android:id="@+id/points"
-        android:layout_width="136dp"
-        android:layout_height="39dp"
+        android:layout_width="131dp"
+        android:layout_height="27dp"
         android:ems="10"
         android:fontFamily="@font/medievalsharp"
         android:text="100 points"
         android:textAlignment="viewEnd"
         android:textColor="#000000"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toEndOf="@+id/monsterImg"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintVertical_bias="0.65999997" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
